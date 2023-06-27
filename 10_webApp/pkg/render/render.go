@@ -9,7 +9,9 @@ import (
 	"path/filepath"
 )
 
+//RenderTemplate renders templates using html/template
 func RenderTemplate(w http.ResponseWriter, tmpl string) {
+	//get the template cache from the app config
 
 	//create a template cache
 	tc, err := CreateTemplateCache()
