@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+</head>
+<body>
+
+<ul>
+{{/*    {{range .}}*/}}
+{{/*    <li>{{.}}</li>*/}}
+{{/*    {{end}}*/}}
+
+{{/*    {{range $index, $element := .}}*/}}
+{{/*        <li>{{$index}}:{{$element}}</li>*/}}
+{{/*    {{end}}*/}}
+
+{{/*    {{.Name}} {{.Age}}*/}}
+{{/*    {{.Formula}}*/}}
+
+{{/*    {{range .}}*/}}
+{{/*    {{.Name}} {{.Motto}}*/}}
+{{/*    {{end}}*/}}
+
+    {{range .Wisdom}}
+        {{.Name}} {{.Motto}}
+    {{end}}
+
+    {{range .Transport}}
+        {{.Name}} {{.Model}}
+    {{end}}
+
+
+
+</ul>
+
+</body>
+</html>

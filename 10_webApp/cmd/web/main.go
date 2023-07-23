@@ -23,6 +23,8 @@ func main() {
 	}
 	app.TemplateCache = tc
 
+	render.NewTemplates(&app)
+
 	http.HandleFunc("/", handler.Home)
 	http.HandleFunc("/about", handler.About)
 

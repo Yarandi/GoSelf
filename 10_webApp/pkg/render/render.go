@@ -2,33 +2,41 @@ package render
 
 import (
 	"bytes"
-	"github.com/Yarandi/go-course/pkg/helpers"
+	"fmt"
+	"github.com/Yarandi/go-course/pkg/config"
 	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
 )
 
-//RenderTemplate renders templates using html/template
+var app *config.AppConfig
+
+// NewTemplates sets the config for the template package
+func NewTemplates(a *config.AppConfig) {
+	app = a
+}
+
+// RenderTemplate renders templates using html/template
 func RenderTemplate(w http.ResponseWriter, tmpl string) {
 	//get the template cache from the app config
 
-	//create a template cache
-	tc, err := CreateTemplateCache()
-	helpers.DD(tc)
+	tc := app.TemplateCache
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	//create a template cache
+	//tc, err := CreateTemplateCache()
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 
 	//get requested template from cache
 	t, ok := tc[tmpl]
 	if !ok {
-		log.Fatal(err)
+		log.Fatal("could not get template from template caceh")
 	}
 
 	buf := new(bytes.Buffer)
-	err = t.Execute(buf, nil)
+	err := t.Execute(buf, nil)
 	if err != nil {
 		log.Println(err)
 	}
@@ -71,8 +79,8 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 			if err != nil {
 				return myCache, err
 			}
-			helpers.DD(tm)
-			//fmt.Println(ts)
+			//helpers.DD(tm)
+			fmt.Println(tm)
 		}
 
 		myCache[name] = ts
