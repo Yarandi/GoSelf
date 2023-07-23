@@ -9,8 +9,11 @@
 </head>
 <body>
 
-showing time without time formatting {{.}}
-showing time with time formatting {{fdateMDY . }} _ {{fdateDMY .}}
+{{/*showing time without time formatting {{.}}*/}}
+{{/*showing time with time formatting {{fdateMDY . }} _ {{fdateDMY .}}*/}}
+
+{{.}}
+{{. | fdbl | fsq }}
 
 </body>
 </html>
