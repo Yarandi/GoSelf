@@ -9,14 +9,17 @@
 </head>
 <body>
 
-{{if .Words}}
-    {{range .Words}}
-        {{index .}}
-     {{end}}
+{{range .}}
+  {{if and .Name .Age}}
+      {{.Name}}
+  {{end}}
 {{end}}
 
-{{.Lname}}
-{{index .Lname}}
+{{range .}}
+    {{if gt .Age 33}}
+        {{.Name}}
+    {{end}}
+{{end}}
 
 </body>
 </html>
