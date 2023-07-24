@@ -9,9 +9,11 @@
 </head>
 <body>
 
-{{index .Words 0}}
-{{index .Words 1}}
-{{index .Words 2}}
+{{if .Words}}
+    {{range .Words}}
+        {{index .}}
+     {{end}}
+{{end}}
 
 {{.Lname}}
 {{index .Lname}}
