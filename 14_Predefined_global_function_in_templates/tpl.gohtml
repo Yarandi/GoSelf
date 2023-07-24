@@ -21,5 +21,12 @@
     {{end}}
 {{end}}
 
+
+{{range .}}
+    {{if gt .FirstScore .SecondScore}}
+        {{.Name}} {{.Family}} {{.FirstScore}} > {{.SecondScore}}
+    {{end}}
+{{end}}
+
 </body>
 </html>
