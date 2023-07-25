@@ -13,7 +13,7 @@ func init() {
 }
 
 func main() {
-	pageTitle := "Nested Template"
+	pageTitle := "NESTED TEMPLATE PASSED DATA"
 	err := tpl.ExecuteTemplate(os.Stdout, "index.gohtml", pageTitle)
 	if err != nil {
 		log.Fatalln(err)
