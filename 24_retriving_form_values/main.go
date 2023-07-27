@@ -24,5 +24,8 @@ func init() {
 
 func main() {
 	var d hotdog
-	http.ListenAndServe(":8080", d)
+	err := http.ListenAndServe(":8080", d)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
