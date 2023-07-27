@@ -15,6 +15,12 @@ func (m hotdog) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	//-------------------------------------------------------------------------
+	//r.Form | get data from url (query string) and also get the body form data
+	//-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
+	//r.PostForm | only get the body form data
+	//-------------------------------------------------------------------------
 	tpl.ExecuteTemplate(w, "index.gohtml", r.Form)
 }
 
