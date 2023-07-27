@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 )
 
 func main() {
@@ -25,6 +26,13 @@ func main() {
 }
 
 func handle(conn net.Conn) {
+
+	t := time.Now().Add(20 * time.Second)
+	err := conn.SetReadDeadline(t) //the connection will close after 20 seconds
+	if err != nil {
+		log.Println("CONN TIMEOUT")
+	}
+
 	scanner := bufio.NewScanner(conn)
 	for scanner.Scan() {
 		ln := scanner.Text()
@@ -32,8 +40,8 @@ func handle(conn net.Conn) {
 		fmt.Fprintf(conn, "I heard you say:%s\n", ln)
 	}
 	defer conn.Close()
-	//we never get here
-	//we have an open stream connection
-	//how dose the above reader know when it's done?
-	fmt.Println("code got here")
+	//now we get here
+	//the connection will timeout
+	//that breaks us out of the scanner loop
+	fmt.Printf("Connection was closed at %v", t)
 }
