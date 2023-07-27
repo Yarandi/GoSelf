@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Retriving form values, Exploring request in go</title>
+</head>
+<body>
+
+{{if .}}
+    {{range $key, $value := .}}
+        <p><em>{{$key}}</em></p>
+        <p><ul>
+            {{range $value}}
+                <li>{{.}}</li>
+            {{end}}
+        </ul></p>
+    {{end}}
+{{end}}
+
+
+<form action="/" method="POST">
+    <input type="text" name = "fname" placeholder="first name" autofocus autocomplete="off"><br>
+    <input type="password" name = "password" placeholder="password" autofocus autocomplete="off"><br>
+    <input type="submit" name="submit-btn" value="submit">
+</form>
+
+</body>
+</html>
