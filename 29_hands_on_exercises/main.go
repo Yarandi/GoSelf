@@ -11,9 +11,9 @@ var tpl *template.Template
 
 func main() {
 
-	http.HandleFunc("/", index)
-	http.HandleFunc("/me/", me)
-	http.HandleFunc("/yarandi/", yarandi)
+	http.Handle("/", http.HandlerFunc(index))
+	http.Handle("/me/", http.HandlerFunc(me))
+	http.Handle("/yarandi/", http.HandlerFunc(yarandi))
 	http.ListenAndServe(":8080", nil)
 }
 
