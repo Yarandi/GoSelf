@@ -1,9 +1,19 @@
 package main
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+	"os"
+)
 
 func main() {
 
-	http.ListenAndServe(":8080", http.FileServer(http.Dir(".")))
+	log.Fatal(http.ListenAndServe(":8080", http.FileServer(http.Dir("."))))
+}
 
+func notFound(w http.ResponseWriter, r *http.Request) {
+	_, err := os.Open("tedd.jpg")
+	if err != nil {
+		http.Error(w, "not found", 404)
+	}
 }
