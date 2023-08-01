@@ -1,0 +1,18 @@
+{{template "header"}}
+
+    <form method="post">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="first">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="last">
+        <label for="sub">Subscribe</label>
+        <input type="checkbox" id="sub" name="subscribe">
+        <input type="submit">
+    </form>
+    </br>
+    <h6>First Name: <em>{{.FirstName}}</em></h6>
+    <h6>Last Name: <em>{{.LastName}}</em></h6>
+    <h6>Subscribed: <em>{{.Subscribed}}</em></h6>
+    <h6></h6>
+
+{{template "footer"}}

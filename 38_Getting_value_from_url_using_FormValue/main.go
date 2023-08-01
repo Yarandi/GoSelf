@@ -17,6 +17,3 @@ func foo(w http.ResponseWriter, r *http.Request) {
 	v := r.FormValue("q")
 	io.WriteString(w, "Do my search: "+v)
 }
-
-
-
