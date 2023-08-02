@@ -47,6 +47,19 @@ func foo(w http.ResponseWriter, r *http.Request) {
 		}
 		s = string(b)
 
+		//check if directory exists or not (is not necessary check)
+		// Check if the directory already exists
+		_, err = os.Stat("home/documents/user/upload")
+		if err != nil {
+			fmt.Println("Directory already exists.")
+			return
+		}
+		//make directory
+		err = os.MkdirAll("home/documents/user/upload", 0750)
+		if err != nil && !os.IsExist(err) {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 		//store on server
 		dst, err := os.Create(filepath.Join("home", "documents", "user", "upload", h.Filename))
 		if err != nil {
