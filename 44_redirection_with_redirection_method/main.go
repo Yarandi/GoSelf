@@ -21,16 +21,17 @@ func main() {
 }
 
 func foo(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("your request method at foo", req.Method, "\n ")
+	fmt.Print("your request method at foo is: ", req.Method, "\n")
 }
 
 func bar(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("Your request method at bar is:", req.Method, "\n ")
-	//http.Redirect(w, req, "/", http.StatusSeeOther)
-	http.Redirect(w, req, "/", http.StatusTemporaryRedirect)
+	fmt.Print("Your request method at bar is: ", req.Method, "\n")
+	//http.Redirect(w, req, "/", http.StatusSeeOther) // code = 303
+	//http.Redirect(w, req, "/", http.StatusTemporaryRedirect) // code = 307
+	http.Redirect(w, req, "/", http.StatusMovedPermanently) // code = 301
 }
 
 func barred(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("you request method at barred:", req.Method, "\n ")
+	fmt.Print("you request method at barred is: ", req.Method, "\n")
 	tpl.ExecuteTemplate(w, "index.gohtml", nil)
 }
