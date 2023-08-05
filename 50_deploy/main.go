@@ -19,3 +19,9 @@ func index(w http.ResponseWriter, r *http.Request) {
 	//time.Sleep(time.Second * 5)
 	//}
 }
+
+//-----------------------------------------------------------------------------------------
+//sudo launchctl load /Library/LaunchDaemons/com.example.mygoapponmacos.plist
+//sudo log stream --predicate 'senderImagePath CONTAINS "com.example.mygoapponmacos.plist"'
+//sudo launchctl unload /Library/LaunchDaemons/com.example.mygoapponmacos.plist
+//-----------------------------------------------------------------------------------------
