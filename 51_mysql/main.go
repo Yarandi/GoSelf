@@ -2,8 +2,8 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"html/template"
 	"io"
 	"log"
 	"net/http"
@@ -11,11 +11,16 @@ import (
 
 var db *sql.DB
 var err error
+var tpl *template.Template
 
 type User struct {
 	id    int
 	name  string
 	email string
+}
+
+func init() {
+	tpl = template.Must(template.ParseGlob("templates/*"))
 }
 
 func main() {
@@ -56,7 +61,9 @@ func read(w http.ResponseWriter, r *http.Request) {
 			email: email,
 		})
 	}
-	fmt.Fprintln(w, users)
+	err = tpl.ExecuteTemplate(w, "index.gohtml", users)
+	checkErr(err)
+	//fmt.Fprintln(w, users)
 }
 
 func checkErr(err error) {
