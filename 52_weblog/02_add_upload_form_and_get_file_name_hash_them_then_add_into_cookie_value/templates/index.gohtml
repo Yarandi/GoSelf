@@ -8,8 +8,14 @@
     <title>Document</title>
 </head>
 <body>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="upload">
+</form>
+
 {{range .}}
- {{.}}
+ <img height="40px" width="40px" src="/upload/users/files/{{.}}" alt="">
 {{end}}
 
 </body>
