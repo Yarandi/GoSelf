@@ -7,11 +7,13 @@ import (
 )
 
 var w sync.WaitGroup
+var w1 sync.WaitGroup
 
 // my brain structure
 func main() {
 	DoWork()
 	w.Wait()
+	w1.Wait()
 }
 
 func DoWork() {
@@ -27,6 +29,7 @@ func Offroad() {
 		fmt.Println("Think... \t")
 	}
 	fmt.Println("How can i effort that??")
+	w1.Add(1)
 	go CheckBalance()
 }
 
@@ -35,4 +38,5 @@ func CheckBalance() {
 	time.Sleep(3000 * time.Millisecond)
 	fmt.Println("go and f... yourself!")
 	w.Done()
+	w1.Done()
 }
