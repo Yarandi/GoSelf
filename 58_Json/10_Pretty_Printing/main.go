@@ -31,7 +31,6 @@ func marshal(w http.ResponseWriter, req *http.Request) {
 	}
 	// Marshaling with indentation
 	jsonData, _ := json.MarshalIndent(c1, "", "    ")
-
 	//MarshalIndent works on cms
 	fmt.Println("Indented JSON:")
 	fmt.Println(string(jsonData))
