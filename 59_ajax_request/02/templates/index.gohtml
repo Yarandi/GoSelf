@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax request</title>
+</head>
+<body>
+
+<h1>click me</h1>
+
+<script>
+    document.querySelector('h1').onclick = makeRequest;
+    function makeRequest(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/foo', true);
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+                var b = document.querySelector('body')
+                var myHeadingOne = document.createElement('h1')
+                var myHeadingOneText = document.createTextNode(xhr.responseText);
+                myHeadingOne.appendChild(myHeadingOneText)
+                b.appendChild(myHeadingOne)
+            }
+        };
+        xhr.send()
+    }
+</script>
+</body>
+
+
+
+</html>
