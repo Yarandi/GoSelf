@@ -17,23 +17,24 @@ func init() {
 }
 
 func main() {
-	router := httprouter.New()
+	r := httprouter.New()
 
-	router.GET("/", index)
+	r.GET("/", index)
 
 	//add route for creating user
-	router.POST("/user", createUser)
+	r.POST("/user", createUser)
 
 	//add route plus parameters for getting user
-	router.GET("/user/:id", getUser)
+	r.GET("/user/:id", getUser)
 
-	http.ListenAndServe(":8080", router)
+	http.ListenAndServe(":8080", r)
 }
 
 func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	tpl.ExecuteTemplate(w, "index.gohtml", nil)
 }
 
+// getting user
 func getUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -54,20 +55,22 @@ func getUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	w.Write(jsonData)
 }
 
-func createUser(w http.ResponseWriter, req *http.Request, p httprouter.Params) {
+// create user
+func createUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	u := models.User{}
 
-	//decode to save
-	err := json.NewDecoder(req.Body).Decode(&u)
+	//decode json from curl to save on u
+	//curl -X POST -H "Content-Type: application/json" -d '{"Name":"Hamed", "Age":35, "Gender":"male"}' http://localhost:8080/user
+	err := json.NewDecoder(r.Body).Decode(&u)
 
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	//change Id
-	u.Id = "879054"
+	//change Id value
+	u.Id = "3225"
 
-	//marshal to show again
+	//marshal to show in json format
 	jsonData, _ := json.Marshal(u)
 
 	//write content type / status code / and Payload
