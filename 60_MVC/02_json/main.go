@@ -27,6 +27,9 @@ func main() {
 	//add route plus parameters for getting user
 	r.GET("/user/:id", getUser)
 
+	//delete user
+	r.DELETE("/user/:id", deleteUser)
+
 	http.ListenAndServe(":8080", r)
 }
 
@@ -78,4 +81,10 @@ func createUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	w.WriteHeader(http.StatusCreated) // 201
 
 	fmt.Fprintf(w, "%s \n", jsonData)
+}
+
+// curl -X DELETE -H "Content-Type: application/json" http://localhost/user/007
+func deleteUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w, "write code to delete user\n")
 }
